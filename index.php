@@ -84,7 +84,7 @@ Learn More
 
 <div class="hero-right">
 
-<img src= "images/hero.png" alt="AI Resume">
+<img src= "logo.png" alt="AI Resume">
 
 </div>
 
