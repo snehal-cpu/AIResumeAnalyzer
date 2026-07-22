@@ -116,7 +116,16 @@ font-weight:bold;
 Login
 </button>
 
+<div style="text-align:right; margin-top:12px;">
+    <a href="forgot_password.php"
+       style="color:#2563eb; text-decoration:none; font-weight:500;">
+        Forgot Password?
+    </a>
+</div>
+
 </form>
+</form>
+
 
 <div class="register">
 
