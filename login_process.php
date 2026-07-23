@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name'] = $row['name'];
             $_SESSION['email'] = $row['email'];
 
-            header("Location: dashboard.php");
+            header("Location: profile.php");
             exit();
 
         } else {
