@@ -57,13 +57,33 @@ $user=$_SESSION['id'];
 
 $role=$_POST['jobrole'];
 
-$sql="INSERT INTO resumes(user_id,file_name,job_role)
+// Extract text from PDF
+require_once 'vendor/autoload.php';
+$text = "";
+if ($extension == 'pdf') {
+    try {
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf = $parser->parseFile($destination);
+        $text = $pdf->getText();
+    } catch (Exception $e) {
+        $text = "Error parsing PDF: " . $e->getMessage();
+    }
+} else {
+    $text = "Could not extract text. File is not a PDF.";
+}
 
-VALUES(?,?,?)";
+// Call AI
+include_once "gemini.php";
+$aiResult = analyzeResumeAI($text, $role);
+$aiJson = json_encode($aiResult);
+
+$sql="INSERT INTO resumes(user_id,file_name,job_role,ai_analysis)
+
+VALUES(?,?,?,?)";
 
 $stmt=mysqli_prepare($conn,$sql);
 
-mysqli_stmt_bind_param($stmt,"iss",$user,$newName,$role);
+mysqli_stmt_bind_param($stmt,"isss",$user,$newName,$role,$aiJson);
 
 if (!mysqli_stmt_execute($stmt)) {
     die("Database Error: " . mysqli_error($conn));
