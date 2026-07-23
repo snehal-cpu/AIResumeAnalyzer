@@ -1,0 +1,5 @@
+<?php
+
+define("GROQ_API_KEY", "REMOVEDgANJISJnMhnvUyggRPzbWGdyb3FYUDyKhAK81MEFIoWAShKOcDZn");
+
+?>

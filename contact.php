@@ -8,13 +8,17 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
 
 body{
     background:linear-gradient(135deg,#071a35,#0d2d5f,#123d7a);
     min-height:100vh;
     font-family:'Poppins',sans-serif;
 }
+<<<<<<< Updated upstream
 header{
     width:100%;
 }
@@ -140,6 +144,8 @@ nav ul li a:hover{
 }
 
 
+=======
+>>>>>>> Stashed changes
 
 .contact-card{
     background:rgba(255,255,255,0.08);
@@ -226,6 +232,7 @@ h5{
     background:#1d4ed8;
     color:white;
 }
+<<<<<<< Updated upstream
 footer{
 
     background:linear-gradient(135deg,#0f172a,#2563eb);
@@ -424,12 +431,15 @@ footer hr{
     }
 
 }
+=======
+>>>>>>> Stashed changes
 
 </style>
 
 </head>
 
 <body>
+<<<<<<< Updated upstream
     <header>
 
 <nav>
@@ -458,6 +468,8 @@ footer hr{
 
 
 
+=======
+>>>>>>> Stashed changes
 
 <div class="container py-5">
 
@@ -477,7 +489,11 @@ We're here to help you improve your resume and achieve a better ATS score.
 <hr class="text-light">
 
 <h5>📧 Email</h5>
+<<<<<<< Updated upstream
 <p>support@airesume.com</p>
+=======
+<p>resumeanalyze.team6@gmail.com</p>
+>>>>>>> Stashed changes
 
 <h5>📞 Phone</h5>
 <p>+91 9876543210</p>
@@ -544,6 +560,7 @@ Send Us a Message
 </div>
 
 </div>
+<<<<<<< Updated upstream
 <footer>
 
     <h2>AI Resume Analyzer</h2>
@@ -573,6 +590,8 @@ Send Us a Message
     </p>
 
 </footer>
+=======
+>>>>>>> Stashed changes
 
 </body>
 </html>
