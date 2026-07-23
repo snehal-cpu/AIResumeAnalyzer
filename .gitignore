@@ -1,0 +1,13 @@
+# API keys
+config/api.php
+api.php
+.env
+
+# Composer
+vendor/
+
+# Uploaded resumes
+uploads/
+
+# XAMPP temporary files
+*.log
