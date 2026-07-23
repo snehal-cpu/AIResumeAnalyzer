@@ -1,488 +1,743 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+include "db.php";
+
+$userId = $_SESSION['id'];
+$name   = $_SESSION['name'];
+
+/* ==========================
+   Dashboard Statistics
+========================== */
+
+$totalResume = 0;
+$atsScore = "--";
+
+$res = mysqli_query($conn,
+"SELECT COUNT(*) AS total
+FROM resumes
+WHERE user_id='$userId'");
+
+if($res){
+    $row = mysqli_fetch_assoc($res);
+    $totalResume = $row['total'];
+}
+
+$result = mysqli_query($conn,
+"SELECT ats_score
+FROM resume_analysis
+WHERE user_id='$userId'
+ORDER BY id DESC
+LIMIT 1");
+
+if($result && mysqli_num_rows($result)>0){
+    $row = mysqli_fetch_assoc($result);
+    $atsScore = $row['ats_score'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+=======
+>>>>>>> a440784 (Upadeted file)
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Resume Analyzer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<style>
+<title>AI Resume Analyzer Dashboard</title>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+<<<<<<< HEAD
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-body{
-background:linear-gradient(135deg,#081c5d,#3b1fd6);
-display:flex;
-color:white;
-}
-
-.sidebar{
-width:250px;
-height:100vh;
-background:#07113d;
-padding:25px;
-position:fixed;
-}
-
-.logo{
-font-size:28px;
-font-weight:700;
-margin-bottom:40px;
-}
-
-.menu a{
-display:block;
-text-decoration:none;
-color:white;
-padding:15px;
-margin-bottom:15px;
-border-radius:12px;
-transition:.3s;
-}
-
-.menu a:hover{
-background:#3f5cff;
-}
-
-.main{
-margin-left:250px;
-padding:25px;
-width:100%;
-}
-
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:30px;
-}
-
-.header h1{
-font-size:42px;
-}
-
-.header p{
-opacity:.8;
-margin-top:5px;
-}
-
-.right{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.profile{
-width:55px;
-height:55px;
-border-radius:50%;
-background:#ff4fa5;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-font-size:22px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-}
-
-.card{
-background:white;
-color:black;
-padding:25px;
-border-radius:20px;
-display:flex;
-align-items:center;
-gap:18px;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.icon{
-width:70px;
-height:70px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px;
-color:white;
-}
-
-.blue{background:#2563eb;}
-.green{background:#22c55e;}
-.orange{background:#f59e0b;}
-.purple{background:#7c3aed;}
-
-.card h2{
-font-size:36px;
-margin-top:5px;
-}
-
-.action{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-margin-top:25px;
-}
-
-.btn{
-padding:22px;
-border-radius:18px;
-font-size:18px;
-font-weight:600;
-text-align:center;
-cursor:pointer;
-transition:.3s;
-color:white;
-}
-
-.b1{background:#2563eb;}
-.b2{background:#7c3aed;}
-.b3{background:#16a34a;}
-.b4{background:#ec4899;}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-</style>
 </head>
+
+=======
+<link rel="stylesheet"
+href="css/dashboard.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+>>>>>>> a440784 (Upadeted file)
 
 <body>
 
-<div class="sidebar">
+<!-- ==========================
+        SIDEBAR
+========================== -->
 
-<div class="logo">🤖 AI Resume</div>
+<aside class="sidebar">
 
-<div class="menu">
+<div class="logo">
 
-<a href="#">🏠 Dashboard</a>
-<a href="#">📤 Upload Resume</a>
-<a href="#">📄 View Reports</a>
-<a href="#">📊 ATS Score</a>
-<a href="#">👤 Profile</a>
-<a href="#">⚙ Settings</a>
-<a href="#">🚪 Logout</a>
+<div class="logo-icon">
+
+<i class="fa-solid fa-brain"></i>
 
 </div>
-
-</div>
-
-<div class="main">
-
-<div class="header">
 
 <div>
 
-<h1>Welcome Back, Shruti 👋</h1>
+<h2>ResumeAI</h2>
 
-<p>Analyze your resume and improve your ATS Score.</p>
+<p>AI Resume Analyzer</p>
 
 </div>
 
-<div class="right">
+</div>
+
+<nav>
+
+<a href="dashboard.php" class="active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+<a href="result.php">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+<span>Reports</span>
+
+</a>
+
+<a href="#analysis">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>ATS Analysis</span>
+
+</a>
+
+<a href="profile.php">
+
+<i class="fa-solid fa-user"></i>
+
+<span>Profile</span>
+
+</a>
+
+<a href="#">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+</nav>
+
+<div class="sidebar-bottom">
+
+<a href="logout.php" class="logout">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</div>
+
+</aside>
+
+<!-- ==========================
+        MAIN CONTENT
+========================== -->
+
+<main class="main-content">
+
+<!-- HEADER -->
+
+<header class="topbar">
 
 <div>
-21 July 2026
+
+<h1>
+
+Welcome Back,
+<strong><?php echo htmlspecialchars($name); ?></strong> 👋
+
+</h1>
+
+<p>
+
+Track your resume performance and improve your ATS score with AI.
+
+</p>
+
 </div>
 
-<div class="profile">
-S
+<div class="profile-box">
+
+<div class="profile-icon">
+
+<i class="fa-solid fa-user"></i>
+
 </div>
+
+<div>
+
+<span>Logged in as</span>
+
+<h3><?php echo htmlspecialchars($name); ?></h3>
 
 </div>
 
 </div>
 
-<div class="cards">
+</header>
+
+<!-- ==========================
+        DASHBOARD CARDS
+========================== -->
+
+<section class="dashboard-cards">
 
 <div class="card">
-<div class="icon blue">📄</div>
-<div>
-<p>Total Resume</p>
-<h2>12</h2>
+
+<div class="card-icon blue">
+
+<i class="fa-solid fa-file"></i>
+
 </div>
+
+<div>
+
+<h2><?php echo $totalResume; ?></h2>
+
+<p>Uploaded Resumes</p>
+
+</div>
+
 </div>
 
 <div class="card">
-<div class="icon green">📈</div>
-<div>
-<p>Average ATS</p>
-<h2>78%</h2>
+
+<div class="card-icon green">
+
+<i class="fa-solid fa-chart-simple"></i>
+
 </div>
+
+<div>
+
+<h2><?php echo $atsScore; ?>%</h2>
+
+<p>Latest ATS Score</p>
+
+</div>
+
 </div>
 
 <div class="card">
-<div class="icon orange">✔</div>
-<div>
-<p>Selected</p>
-<h2>05</h2>
+
+<div class="card-icon orange">
+
+<i class="fa-solid fa-briefcase"></i>
+
 </div>
+
+<div>
+
+<h2>25+</h2>
+
+<p>Job Roles</p>
+
+</div>
+
 </div>
 
 <div class="card">
-<div class="icon purple">🚀</div>
-<div>
-<p>Improvement</p>
-<h2>32%</h2>
-</div>
-</div>
 
-</div>
+<div class="card-icon purple">
 
-<div class="action">
-
-<div class="btn b1">📤 Upload Resume</div>
-
-<div class="btn b2">📄 View Reports</div>
-
-<div class="btn b3">📊 Check ATS</div>
-
-<div class="btn b4">👤 Edit Profile</div>
-
-</div>
-<div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:30px;">
-
-<div>
-
-<div style="background:rgba(255,255,255,.08);padding:20px;border-radius:20px;">
-
-<h2>📈 ATS Score Trend</h2>
-
-<canvas id="lineChart" height="120"></canvas>
-
-</div>
-
-<div style="background:rgba(255,255,255,.08);padding:20px;border-radius:20px;margin-top:20px;">
-
-<h2>🥧 Resume Status</h2>
-
-
-<div style="width:300px; height:300px; margin:auto;">
-    <canvas id="pieChart"></canvas>
-</div>
-<canvas id="pieChart" height="180"></canvas>
-
-</div>
+<i class="fa-solid fa-robot"></i>
 
 </div>
 
 <div>
 
-<div style="background:#08173d;padding:25px;border-radius:20px;text-align:center;">
+<h2>AI</h2>
 
-<h2>Your ATS Score</h2>
-
-<div style="
-width:180px;
-height:180px;
-border:12px solid #00e676;
-border-radius:50%;
-margin:20px auto;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:45px;
-font-weight:bold;">
-
-85%
+<p>Powered Analysis</p>
 
 </div>
 
-<p>Excellent 🎉</p>
+</div>
 
-<button style="
-margin-top:20px;
-padding:12px 30px;
-background:#00c853;
-border:none;
-color:white;
-border-radius:10px;
-cursor:pointer;">
+</section><!-- ===================================================
+                UPLOAD RESUME SECTION
+=================================================== -->
 
-Improve More
+<section class="upload-section">
 
-</button>
+    <div class="section-header">
+
+        <h2>
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            Upload Resume
+        </h2>
+
+        <p>
+            Upload your resume in PDF or DOCX format and let AI analyze it.
+        </p>
+
+    </div>
+
+    <form action="upload.php"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <div class="upload-box">
+
+            <i class="fa-solid fa-file-arrow-up upload-big-icon"></i>
+
+            <h3>Drag & Drop Resume</h3>
+
+            <p>or click below to choose your file</p>
+
+            <label for="resume" class="choose-btn">
+
+                Choose Resume
+
+            </label>
+
+            <input
+                type="file"
+                id="resume"
+                name="resume"
+                accept=".pdf,.doc,.docx"
+                hidden
+                required>
+
+            <span id="fileName">
+
+                No file selected
+
+            </span>
+
+        </div>
+
+        <input
+            type="text"
+            name="jobrole"
+            placeholder="Target Job Role (Example: Software Engineer)"
+            required>
+
+        <button class="analyze-btn">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            Analyze Resume
+
+        </button>
+
+    </form>
+
+</section>
+
+
+
+<!-- ===================================================
+                AI ANALYSIS
+=================================================== -->
+
+<section class="analysis-section" id="analysis">
+
+<h2>
+
+<i class="fa-solid fa-chart-line"></i>
+
+Resume Analysis
+
+</h2>
+
+<div class="analysis-grid">
+
+<div class="analysis-card">
+
+<div class="analysis-icon blue">
+
+<i class="fa-solid fa-award"></i>
 
 </div>
 
-<div style="background:#08173d;padding:20px;border-radius:20px;margin-top:20px;">
+<h3>ATS Score</h3>
 
-<h2>💡 Tips to Improve</h2>
+<div class="circle-score">
 
-<ul style="line-height:35px;margin-top:15px;">
+<?php echo ($atsScore=="--") ? "0%" : $atsScore."%"; ?>
 
-<li>✔ Add relevant keywords</li>
+</div>
 
-<li>✔ Improve skills section</li>
+<p>
 
-<li>✔ Add certifications</li>
+Your latest AI generated ATS score.
 
-<li>✔ Keep resume concise</li>
+</p>
 
-<li>✔ Add project details</li>
+</div>
+
+
+
+<div class="analysis-card">
+
+<div class="analysis-icon green">
+
+<i class="fa-solid fa-lightbulb"></i>
+
+</div>
+
+<h3>AI Suggestions</h3>
+
+<ul>
+
+<li>Improve resume summary</li>
+
+<li>Add measurable achievements</li>
+
+<li>Use ATS keywords</li>
+
+<li>Add projects</li>
 
 </ul>
 
 </div>
 
+
+
+<div class="analysis-card">
+
+<div class="analysis-icon orange">
+
+<i class="fa-solid fa-code"></i>
+
+</div>
+
+<h3>Missing Skills</h3>
+
+<div class="skills">
+
+<span>Java</span>
+
+<span>Python</span>
+
+<span>Git</span>
+
+<span>SQL</span>
+
+<span>Communication</span>
+
 </div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</div>
 
-<script>
+</section>
 
-new Chart(document.getElementById("lineChart"),{
 
-type:"line",
 
-data:{
+<!-- ===================================================
+            STRENGTHS & IMPROVEMENTS
+=================================================== -->
 
-labels:["15 Jul","16 Jul","17 Jul","18 Jul","19 Jul","20 Jul","21 Jul"],
+<section class="strength-grid">
 
-datasets:[{
+<div class="strength-card">
 
-label:"ATS",
+<h2>
 
-data:[50,58,75,62,82,76,85],
+<i class="fa-solid fa-circle-check"></i>
 
-borderColor:"#00e5ff",
+Strengths
 
-backgroundColor:"rgba(0,229,255,.2)",
+</h2>
 
-fill:true,
+<ul>
 
-tension:.4
+<li>Professional layout</li>
 
-}]
+<li>Readable formatting</li>
 
-}
+<li>Good education section</li>
 
-});
+<li>Clear section headings</li>
 
-new Chart(document.getElementById("pieChart"),{
+</ul>
 
-type:"pie",
+</div>
 
-data:{
 
-labels:["Selected","Review","Need Improvement"],
 
-datasets:[{
+<div class="strength-card danger">
 
-data:[42,33,25],
+<h2>
 
-backgroundColor:["#00e676","#2196f3","#ff9800"]
+<i class="fa-solid fa-circle-xmark"></i>
 
-}]
+Needs Improvement
 
-}
+</h2>
 
-});
+<ul>
 
-</script>
-<div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:30px;">
+<li>Add internships</li>
 
-<div style="background:rgba(255,255,255,.08);padding:20px;border-radius:20px;">
+<li>Add certifications</li>
 
-<h2 style="margin-bottom:20px;">📄 Recent Activity</h2>
+<li>Include more technical skills</li>
 
-<table style="width:100%;border-collapse:collapse;color:white;">
+<li>Add achievements</li>
 
-<tr style="background:#1b2d6b;">
-<th style="padding:15px;">Resume</th>
+</ul>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================================================
+                ATS PROGRESS
+=================================================== -->
+
+<section class="progress-section">
+
+<h2>
+
+<i class="fa-solid fa-chart-column"></i>
+
+ATS Progress
+
+</h2>
+
+<div class="progress-card">
+
+<div class="progress-head">
+
+<span>Current Score</span>
+
+<strong>
+
+<?php echo ($atsScore=="--") ? "0%" : $atsScore."%"; ?>
+
+</strong>
+
+</div>
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+
+style="width:<?php echo ($atsScore=="--") ? 0 : $atsScore; ?>%;">
+
+</div>
+
+</div>
+
+<p>
+
+Aim for an ATS score above <strong>90%</strong>
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================================================
+                RECENT REPORTS
+=================================================== -->
+
+<section class="reports">
+
+<h2>
+
+<i class="fa-solid fa-folder-open"></i>
+
+Recent Reports
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Resume</th>
+
+<th>Role</th>
+
 <th>ATS</th>
+
 <th>Status</th>
-<th>Action</th>
+
 </tr>
 
-<tr>
-<td style="padding:15px;">Software_Engineer.pdf</td>
-<td style="color:#00e676;">85%</td>
-<td><span style="background:#16a34a;padding:6px 12px;border-radius:20px;">Selected</span></td>
-<td>👁️ ⬇️</td>
-</tr>
+</thead>
+
+<tbody>
 
 <tr>
-<td style="padding:15px;">Data_Analyst.pdf</td>
-<td style="color:#ffd54f;">72%</td>
-<td><span style="background:#2563eb;padding:6px 12px;border-radius:20px;">Review</span></td>
-<td>👁️ ⬇️</td>
+
+<td colspan="4" class="empty">
+
+No Resume Analysis Available
+
+</td>
+
 </tr>
 
-<tr>
-<td style="padding:15px;">Frontend_Resume.pdf</td>
-<td style="color:#ff9800;">65%</td>
-<td><span style="background:#ef4444;padding:6px 12px;border-radius:20px;">Improve</span></td>
-<td>👁️ ⬇️</td>
-</tr>
-
-<tr>
-<td style="padding:15px;">Java_Developer.pdf</td>
-<td style="color:#00e676;">91%</td>
-<td><span style="background:#16a34a;padding:6px 12px;border-radius:20px;">Selected</span></td>
-<td>👁️ ⬇️</td>
-</tr>
+</tbody>
 
 </table>
 
-</div>
+</section>
 
-<div>
 
-<div style="background:linear-gradient(135deg,#2563eb,#7c3aed);padding:25px;border-radius:20px;text-align:center;">
 
-<h2>🚀 Upgrade to Pro</h2>
+<!-- ===================================================
+                CAREER TIPS
+=================================================== -->
 
-<p style="margin:15px 0;">
-Unlock AI insights, premium ATS reports and advanced analytics.
+<section class="career">
+
+<h2>
+
+<i class="fa-solid fa-lightbulb"></i>
+
+Career Tips
+
+</h2>
+
+<div class="tips">
+
+<div class="tip">
+
+<i class="fa-solid fa-user-tie"></i>
+
+<h3>Customize Resume</h3>
+
+<p>
+
+Tailor your resume according to each job description.
+
 </p>
 
-<button style="
-padding:12px 25px;
-background:white;
-color:#2563eb;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;">
-Upgrade Now
-</button>
+</div>
+
+<div class="tip">
+
+<i class="fa-solid fa-key"></i>
+
+<h3>ATS Keywords</h3>
+
+<p>
+
+Use keywords from the job description.
+
+</p>
+
+</div>
+
+<div class="tip">
+
+<i class="fa-solid fa-diagram-project"></i>
+
+<h3>Projects</h3>
+
+<p>
+
+Showcase projects with measurable outcomes.
+
+</p>
+
+</div>
+
+<div class="tip">
+
+<i class="fa-solid fa-certificate"></i>
+
+<h3>Certifications</h3>
+
+<p>
+
+Add certifications to improve credibility.
+
+</p>
 
 </div>
 
 </div>
 
-</div>
+</section>
 
-<footer style="
-margin-top:30px;
-padding:20px;
-text-align:center;
-color:#ccc;">
 
-© 2026 AI Resume Analyzer | Developed by Shruti
+
+<footer class="footer">
+
+<p>
+
+© <?php echo date("Y"); ?>
+
+AI Resume Analyzer • Developed using PHP • MySQL • Gemini AI
+
+</p>
 
 </footer>
 
-</div>
+</main>
+
+<script>
+
+const resume=document.getElementById("resume");
+
+const file=document.getElementById("fileName");
+
+resume.onchange=function(){
+
+if(this.files.length>0){
+
+file.innerHTML=this.files[0].name;
+
+}
+
+}
+
+</script>
 
 </body>
+
 </html>
