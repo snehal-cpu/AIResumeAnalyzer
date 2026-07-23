@@ -1,13 +1,29 @@
-# API keys
-config/api.php
-api.php
+# API keys / secrets
+config/groq_config.php
+config/gemini_config.php
+
+# Environment files
 .env
 
-# Composer
+# Composer dependencies
 vendor/
 
-# Uploaded resumes
+# Uploaded resume files
 uploads/
 
 # XAMPP temporary files
+xampp/
+
+# Logs
 *.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# PHP temporary files
+*.tmp
+*.cache
