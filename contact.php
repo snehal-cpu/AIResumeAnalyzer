@@ -8,24 +8,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    
-=======
->>>>>>> Stashed changes
-=======
-    
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
+
 
 body{
     background:linear-gradient(135deg,#071a35,#0d2d5f,#123d7a);
     min-height:100vh;
     font-family:'Poppins',sans-serif;
 }
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
 header{
     width:100%;
 }
@@ -151,11 +142,6 @@ nav ul li a:hover{
 }
 
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
 
 .contact-card{
     background:rgba(255,255,255,0.08);
@@ -242,10 +228,7 @@ h5{
     background:#1d4ed8;
     color:white;
 }
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
 footer{
 
     background:linear-gradient(135deg,#0f172a,#2563eb);
@@ -444,21 +427,14 @@ footer hr{
     }
 
 }
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
 
 </style>
 
 </head>
 
 <body>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
     <header>
 
 <nav>
@@ -487,11 +463,6 @@ footer hr{
 
 
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
 
 <div class="container py-5">
 
@@ -511,11 +482,6 @@ We're here to help you improve your resume and achieve a better ATS score.
 <hr class="text-light">
 
 <h5>📧 Email</h5>
-<<<<<<< Updated upstream
-<p>support@airesume.com</p>
-=======
-<p>resumeanalyze.team6@gmail.com</p>
->>>>>>> Stashed changes
 
 <h5>📞 Phone</h5>
 <p>+91 9876543210</p>
@@ -582,10 +548,7 @@ Send Us a Message
 </div>
 
 </div>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
 <footer>
 
     <h2>AI Resume Analyzer</h2>
@@ -615,11 +578,7 @@ Send Us a Message
     </p>
 
 </footer>
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> eeac7701e4eb84b3212412d8a52194c0002df9d5
+
 
 </body>
 </html>
