@@ -48,8 +48,7 @@ if($result && mysqli_num_rows($result)>0){
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-=======
->>>>>>> a440784 (Upadeted file)
+
 
 <meta charset="UTF-8">
 
@@ -60,11 +59,8 @@ content="width=device-width, initial-scale=1.0">
 
 
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-</head>
-
-=======
 <link rel="stylesheet"
 href="css/dashboard.css">
 
@@ -164,6 +160,60 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     </div>
 
+   <div class="top-icons">
+
+    <div class="notification">
+
+        <i class="fa-solid fa-bell" id="bell"></i>
+
+        <span class="badge">3</span>
+
+        <div class="notification-box" id="notificationBox">
+
+            <h3>Notifications</h3>
+
+            <div class="notify-item">
+                ✅ Resume analyzed successfully.
+            </div>
+
+            <div class="notify-item">
+                🎯 ATS Score: 87%
+            </div>
+
+            <div class="notify-item">
+                💡 Add SQL & Git to improve your ATS score.
+            </div>
+
+        </div>
+
+   <div class="top-icons">
+
+    <div class="notification">
+
+        <i class="fa-solid fa-bell" id="bell"></i>
+
+        <span class="badge">3</span>
+
+        <div class="notification-box" id="notificationBox">
+
+            <h3>Notifications</h3>
+
+            <div class="notify-item">
+                ✅ Resume analyzed successfully.
+            </div>
+
+            <div class="notify-item">
+                🎯 ATS Score: 87%
+            </div>
+
+            <div class="notify-item">
+                💡 Add SQL & Git to improve your ATS score.
+            </div>
+
+        </div>
+
+    </div>
+
     <a href="profile.php">
         <i class="fa-solid fa-circle-user"></i>
         <span>Profile</span>
@@ -173,6 +223,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <i class="fa-solid fa-gear"></i>
         <span>Settings</span>
     </a>
+
+</div>
 
 </div>
 
